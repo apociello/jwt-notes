@@ -11,6 +11,11 @@ export const errorHandler = (err, req, res, next) => {
     return res.status(400).json({ error: 'Invalid JSON' });
   }
 
+  // Prisma: a @unique field already has that value (username is the only one)
+  if (err.code === 'P2002') {
+    return res.status(409).json({ error: 'Username already taken' });
+  }
+
   // Unexpected: the details stay in the server log, never in the response
   console.error(err);
   res.status(500).json({ error: 'Something went wrong' });
