@@ -16,6 +16,11 @@ export const errorHandler = (err, req, res, next) => {
     return res.status(409).json({ error: 'Username already taken' });
   }
 
+  // Prisma: update/delete didn't find the row (e.g. the account was already deleted)
+  if (err.code === 'P2025') {
+    return res.status(404).json({ error: 'Not found' });
+  }
+
   // Unexpected: the details stay in the server log, never in the response
   console.error(err);
   res.status(500).json({ error: 'Something went wrong' });

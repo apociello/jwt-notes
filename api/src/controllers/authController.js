@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import { prisma } from '../lib/prisma.js';
 import { signToken } from '../lib/jwt.js';
 
-const MIN_PASSWORD_LENGTH = 8;
+export const MIN_PASSWORD_LENGTH = 8;
 
 // What the API sends back about a user (never the password hash)
 const publicUser = ({ id, username, createdAt }) => ({ id, username, createdAt });
