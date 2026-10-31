@@ -1,4 +1,15 @@
-.main {
+.app {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.username {
+  margin-left: auto;
 }
