@@ -19,8 +19,19 @@ export default function NotesPage() {
     setNotes((prev) => [data.note, ...prev]);
   }
 
+  // Editing changes updatedAt, so the note moves to the top like the API orders it
+  async function updateNote(id, values) {
+    const data = await apiFetch(`/notes/${id}`, { method: 'PATCH', body: values });
+    setNotes((prev) => [data.note, ...prev.filter((note) => note.id !== id)]);
+  }
+
+  async function deleteNote(id) {
+    await apiFetch(`/notes/${id}`, { method: 'DELETE' });
+    setNotes((prev) => prev.filter((note) => note.id !== id));
+  }
+
   return (
-    <>
+    <section className={styles.page}>
       <h1>Notes</h1>
       <NoteForm onSubmit={createNote} submitLabel="Add note" />
 
@@ -31,10 +42,15 @@ export default function NotesPage() {
       {notes?.length > 0 && (
         <div className={styles.list}>
           {notes.map((note) => (
-            <NoteItem key={note.id} note={note} />
+            <NoteItem
+              key={note.id}
+              note={note}
+              onUpdate={updateNote}
+              onDelete={deleteNote}
+            />
           ))}
         </div>
       )}
-    </>
+    </section>
   );
 }

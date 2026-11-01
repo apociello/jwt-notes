@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styles from '../styles/NoteForm.module.css';
 
-export default function NoteForm({ onSubmit, submitLabel }) {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+export default function NoteForm({ initialNote, onSubmit, onCancel, submitLabel }) {
+  const [title, setTitle] = useState(initialNote?.title ?? '');
+  const [content, setContent] = useState(initialNote?.content ?? '');
   const [error, setError] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -39,9 +39,17 @@ export default function NoteForm({ onSubmit, submitLabel }) {
         value={content}
         onChange={(e) => setContent(e.target.value)}
       />
-      <button type="submit" disabled={isSubmitting}>
-        {submitLabel}
-      </button>
+
+      <div className={styles.buttons}>
+        <button type="submit" disabled={isSubmitting}>
+          {submitLabel}
+        </button>
+        {onCancel && (
+          <button type="button" onClick={onCancel}>
+            Cancel
+          </button>
+        )}
+      </div>
 
       {error && <p className={styles.error}>{error}</p>}
     </form>

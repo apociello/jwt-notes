@@ -13,3 +13,18 @@
   font-size: 0.875rem;
   color: #666;
 }
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.actions button {
+  padding: 0.25rem 0.75rem;
+  font: inherit;
+}
+
+.error {
+  color: var(--color-error);
+}
