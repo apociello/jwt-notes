@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 320px;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form input,
+.form button {
+  padding: 0.5rem;
+  font: inherit;
+}
+
+.form button {
+  align-self: flex-start;
+}
+
+.success {
+  color: #2e7d32;
+}
+
+.error {
+  color: var(--color-error);
+}
