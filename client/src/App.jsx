@@ -1,25 +1,33 @@
-import { Link, Outlet } from 'react-router';
+import { NavLink, Outlet } from 'react-router';
 import { useAuth } from './context/AuthContext.js';
 import styles from './styles/App.module.css';
+
+const navLinkClass = ({ isActive }) => (isActive ? styles.active : undefined);
 
 export default function App() {
   const { token, user, logout } = useAuth();
 
   return (
-    <div className={styles.app}>
+    <>
       {token && (
-        <nav className={styles.nav}>
-          <Link to="/">Notes</Link>
-          <Link to="/profile">Profile</Link>
-          <span className={styles.username}>{user?.username}</span>
-          <button type="button" onClick={logout}>
-            Log out
-          </button>
-        </nav>
+        <header className={styles.header}>
+          <nav className={styles.nav}>
+            <NavLink to="/" className={navLinkClass}>
+              Notes
+            </NavLink>
+            <NavLink to="/profile" className={navLinkClass}>
+              Profile
+            </NavLink>
+            <span className={styles.username}>{user?.username}</span>
+            <button type="button" onClick={logout}>
+              Log out
+            </button>
+          </nav>
+        </header>
       )}
-      <main>
+      <main className={styles.main}>
         <Outlet />
       </main>
-    </div>
+    </>
   );
 }

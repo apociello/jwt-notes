@@ -1,0 +1,6 @@
+/* Full screen height minus the 2rem top and bottom padding of <main> */
+.center {
+  display: grid;
+  place-items: center;
+  min-height: calc(100dvh - 4rem);
+}

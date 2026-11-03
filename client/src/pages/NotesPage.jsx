@@ -32,12 +32,13 @@ export default function NotesPage() {
 
   return (
     <section className={styles.page}>
-      <h1>Notes</h1>
-      <NoteForm onSubmit={createNote} submitLabel="Add note" />
+      <div className={styles.composer}>
+        <NoteForm onSubmit={createNote} submitLabel="Add note" />
+      </div>
 
-      {error && <p>{error}</p>}
-      {!notes && !error && <p>Loading...</p>}
-      {notes?.length === 0 && <p>No notes yet.</p>}
+      {error && <p className={styles.error}>{error}</p>}
+      {!notes && !error && <p className={styles.status}>Loading...</p>}
+      {notes?.length === 0 && <p className={styles.status}>No notes yet.</p>}
 
       {notes?.length > 0 && (
         <div className={styles.list}>

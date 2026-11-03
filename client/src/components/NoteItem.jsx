@@ -41,15 +41,14 @@ export default function NoteItem({ note, onUpdate, onDelete }) {
     <article className={styles.note}>
       <h2>{note.title}</h2>
       {note.content && <p className={styles.content}>{note.content}</p>}
-      <time className={styles.date} dateTime={note.updatedAt}>
-        {formatDate(note.updatedAt)}
-      </time>
-
-      <div className={styles.actions}>
+      <div className={styles.footer}>
+        <time className={styles.date} dateTime={note.updatedAt}>
+          {formatDate(note.updatedAt)}
+        </time>
         <button type="button" onClick={() => setIsEditing(true)}>
           Edit
         </button>
-        <button type="button" onClick={handleDelete}>
+        <button type="button" className={styles.delete} onClick={handleDelete}>
           Delete
         </button>
       </div>

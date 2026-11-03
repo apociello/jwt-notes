@@ -9,8 +9,6 @@ export default function ProfilePage() {
 
   return (
     <section className={styles.page}>
-      <h1>Profile</h1>
-
       {/* UsernameForm needs user to fill the field; after a reload it takes a moment to arrive */}
       {user ? <UsernameForm /> : <p>Loading...</p>}
       <PasswordForm />
